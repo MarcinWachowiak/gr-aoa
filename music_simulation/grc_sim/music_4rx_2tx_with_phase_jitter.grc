@@ -1,0 +1,844 @@
+options:
+  parameters:
+    author: ''
+    category: '[GRC Hier Blocks]'
+    cmake_opt: ''
+    comment: ''
+    copyright: ''
+    description: ''
+    gen_cmake: 'On'
+    gen_linking: dynamic
+    generate_options: qt_gui
+    hier_block_src_path: '.:'
+    id: run_music_4rx_2tx_with_phase_jitter
+    max_nouts: '0'
+    output_language: python
+    placement: (0,0)
+    qt_qss_theme: ''
+    realtime_scheduling: ''
+    run: 'True'
+    run_command: '{python} -u {filename}'
+    run_options: prompt
+    sizing_mode: fixed
+    thread_safe_setters: ''
+    title: MUSIC 4 RX, 2 SRC with phase jitter
+    window_size: ''
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [8, 8]
+    rotation: 0
+    state: enabled
+
+blocks:
+- name: NormSpacing
+  id: variable
+  parameters:
+    comment: ''
+    value: '0.5'
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [728, 76.0]
+    rotation: 0
+    state: true
+- name: NumArrayElements
+  id: variable
+  parameters:
+    comment: ''
+    value: '4'
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [728, 12.0]
+    rotation: 0
+    state: true
+- name: NumTargets
+  id: variable
+  parameters:
+    comment: ''
+    value: '2'
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [728, 140.0]
+    rotation: 0
+    state: true
+- name: ampl_noise
+  id: variable_qtgui_range
+  parameters:
+    comment: ''
+    gui_hint: ''
+    label: Amplitude noise
+    min_len: '200'
+    orient: Qt.Horizontal
+    rangeType: float
+    start: '0'
+    step: '0.05'
+    stop: '1'
+    value: '0.1'
+    widget: counter_slider
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [1080, 12.0]
+    rotation: 0
+    state: true
+- name: amv0
+  id: variable
+  parameters:
+    comment: ''
+    value: numpy.exp(-1j*ant_locs*2*numpy.pi*numpy.cos(theta0))
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [184, 204.0]
+    rotation: 0
+    state: enabled
+- name: amv1
+  id: variable
+  parameters:
+    comment: ''
+    value: numpy.exp(-1j*ant_locs*2*numpy.pi*numpy.cos(theta1))
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [368, 204.0]
+    rotation: 0
+    state: enabled
+- name: ant_locs
+  id: variable
+  parameters:
+    comment: ''
+    value: numpy.dot(NormSpacing, numpy.arange(NumArrayElements/2, -NumArrayElements/2,
+      -1) if (NumArrayElements%2==1) else numpy.arange(NumArrayElements/2-0.5, -NumArrayElements/2-0.5,
+      -1))
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [528, 12.0]
+    rotation: 0
+    state: enabled
+- name: array_manifold_matrix
+  id: variable
+  parameters:
+    comment: ''
+    value: numpy.array([amv0, amv1]).transpose()
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [528, 76.0]
+    rotation: 0
+    state: enabled
+- name: mag_diff
+  id: variable_qtgui_range
+  parameters:
+    comment: ''
+    gui_hint: ''
+    label: Magnitude difference
+    min_len: '100'
+    orient: Qt.Horizontal
+    rangeType: float
+    start: '0.5'
+    step: '0.01'
+    stop: '1.5'
+    value: '1'
+    widget: counter_slider
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [912, 12.0]
+    rotation: 0
+    state: enabled
+- name: overlap_size
+  id: variable
+  parameters:
+    comment: ''
+    value: 2**10
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [1128, 324.0]
+    rotation: 0
+    state: true
+- name: pha_noise
+  id: variable_qtgui_range
+  parameters:
+    comment: ''
+    gui_hint: ''
+    label: Phase noise
+    min_len: '200'
+    orient: Qt.Horizontal
+    rangeType: float
+    start: '0'
+    step: '0.05'
+    stop: '2'
+    value: '0.5'
+    widget: counter_slider
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [1216, 12.0]
+    rotation: 0
+    state: true
+- name: sample_rate
+  id: variable
+  parameters:
+    comment: ''
+    value: 1e6
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [8, 76.0]
+    rotation: 0
+    state: true
+- name: snap_size
+  id: variable
+  parameters:
+    comment: ''
+    value: 2**12
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [1032, 324.0]
+    rotation: 0
+    state: true
+- name: theta0
+  id: variable
+  parameters:
+    comment: ''
+    value: numpy.pi*theta0_deg/180
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [184, 140.0]
+    rotation: 0
+    state: enabled
+- name: theta0_deg
+  id: variable_qtgui_range
+  parameters:
+    comment: ''
+    gui_hint: ''
+    label: AoA 1
+    min_len: '200'
+    orient: Qt.Horizontal
+    rangeType: float
+    start: '0'
+    step: '1'
+    stop: '180'
+    value: '40'
+    widget: counter_slider
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [184, 12.0]
+    rotation: 0
+    state: enabled
+- name: theta1
+  id: variable
+  parameters:
+    comment: ''
+    value: numpy.pi*theta1_deg/180
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [368, 140.0]
+    rotation: 0
+    state: enabled
+- name: theta1_deg
+  id: variable_qtgui_range
+  parameters:
+    comment: ''
+    gui_hint: ''
+    label: AoA 2
+    min_len: '200'
+    orient: Qt.Horizontal
+    rangeType: float
+    start: '0'
+    step: '1'
+    stop: '180'
+    value: '120'
+    widget: counter_slider
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [368, 12.0]
+    rotation: 0
+    state: enabled
+- name: analog_noise_source_x_0
+  id: analog_noise_source_x
+  parameters:
+    affinity: ''
+    alias: ''
+    amp: ampl_noise
+    comment: ''
+    maxoutbuf: '0'
+    minoutbuf: '0'
+    noise_type: analog.GR_GAUSSIAN
+    seed: '972353'
+    type: complex
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [64, 412.0]
+    rotation: 0
+    state: true
+- name: analog_noise_source_x_1
+  id: analog_noise_source_x
+  parameters:
+    affinity: ''
+    alias: ''
+    amp: ampl_noise
+    comment: ''
+    maxoutbuf: '0'
+    minoutbuf: '0'
+    noise_type: analog.GR_GAUSSIAN
+    seed: '3135154'
+    type: complex
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [64, 644.0]
+    rotation: 0
+    state: true
+- name: analog_noise_source_x_2
+  id: analog_noise_source_x
+  parameters:
+    affinity: ''
+    alias: ''
+    amp: pha_noise
+    comment: ''
+    maxoutbuf: '0'
+    minoutbuf: '0'
+    noise_type: analog.GR_GAUSSIAN
+    seed: '844651711'
+    type: float
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [536, 468.0]
+    rotation: 0
+    state: true
+- name: analog_noise_source_x_2_0
+  id: analog_noise_source_x
+  parameters:
+    affinity: ''
+    alias: ''
+    amp: pha_noise
+    comment: ''
+    maxoutbuf: '0'
+    minoutbuf: '0'
+    noise_type: analog.GR_GAUSSIAN
+    seed: '2531'
+    type: float
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [536, 628.0]
+    rotation: 0
+    state: true
+- name: analog_noise_source_x_2_0_0
+  id: analog_noise_source_x
+  parameters:
+    affinity: ''
+    alias: ''
+    amp: pha_noise
+    comment: ''
+    maxoutbuf: '0'
+    minoutbuf: '0'
+    noise_type: analog.GR_GAUSSIAN
+    seed: '6732'
+    type: float
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [536, 548.0]
+    rotation: 0
+    state: true
+- name: analog_noise_source_x_2_0_0_0
+  id: analog_noise_source_x
+  parameters:
+    affinity: ''
+    alias: ''
+    amp: pha_noise
+    comment: ''
+    maxoutbuf: '0'
+    minoutbuf: '0'
+    noise_type: analog.GR_GAUSSIAN
+    seed: '92114112'
+    type: float
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [536, 708.0]
+    rotation: 0
+    state: true
+- name: analog_sig_source_x_0
+  id: analog_sig_source_x
+  parameters:
+    affinity: ''
+    alias: ''
+    amp: '1'
+    comment: ''
+    freq: 10E+3
+    maxoutbuf: '0'
+    minoutbuf: '0'
+    offset: '0'
+    phase: '0'
+    samp_rate: sample_rate
+    type: complex
+    waveform: analog.GR_COS_WAVE
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [64, 284.0]
+    rotation: 0
+    state: enabled
+- name: analog_sig_source_x_0_0
+  id: analog_sig_source_x
+  parameters:
+    affinity: ''
+    alias: ''
+    amp: '1'
+    comment: ''
+    freq: 2E+3
+    maxoutbuf: '0'
+    minoutbuf: '0'
+    offset: '0'
+    phase: '0'
+    samp_rate: sample_rate
+    type: complex
+    waveform: analog.GR_TRI_WAVE
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [64, 516.0]
+    rotation: 0
+    state: enabled
+- name: aoa_MUSIC_lin_array_0
+  id: aoa_MUSIC_lin_array
+  parameters:
+    affinity: ''
+    alias: ''
+    comment: ''
+    maxoutbuf: '0'
+    minoutbuf: '0'
+    norm_spacing: NormSpacing
+    num_inputs: NumArrayElements
+    num_targets: NumTargets
+    pspectrum_len: '1800'
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [1032, 636.0]
+    rotation: 180
+    state: true
+- name: aoa_autocorrelate_0
+  id: aoa_autocorrelate
+  parameters:
+    affinity: ''
+    alias: ''
+    avg_method: '0'
+    comment: ''
+    maxoutbuf: '0'
+    minoutbuf: '0'
+    num_inputs: '4'
+    overlap_size: overlap_size
+    snapshot_size: snap_size
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [1072, 392.0]
+    rotation: 0
+    state: true
+- name: aoa_rootMUSIC_linear_array_0
+  id: aoa_rootMUSIC_linear_array
+  parameters:
+    affinity: ''
+    alias: ''
+    comment: ''
+    maxoutbuf: '0'
+    minoutbuf: '0'
+    norm_spacing: NormSpacing
+    num_inputs: NumArrayElements
+    num_targets: NumTargets
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [1040, 788.0]
+    rotation: 180
+    state: true
+- name: aoa_shift_phase_multiple_hier_0
+  id: aoa_shift_phase_multiple_hier
+  parameters:
+    affinity: ''
+    alias: ''
+    comment: ''
+    maxoutbuf: '0'
+    minoutbuf: '0'
+    num_signals: '4'
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [760, 328.0]
+    rotation: 0
+    state: true
+- name: blocks_add_xx_0
+  id: blocks_add_xx
+  parameters:
+    affinity: ''
+    alias: ''
+    comment: ''
+    maxoutbuf: '0'
+    minoutbuf: '0'
+    num_inputs: '2'
+    type: complex
+    vlen: '1'
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [272, 560.0]
+    rotation: 0
+    state: true
+- name: blocks_add_xx_0_0
+  id: blocks_add_xx
+  parameters:
+    affinity: ''
+    alias: ''
+    comment: ''
+    maxoutbuf: '0'
+    minoutbuf: '0'
+    num_inputs: '2'
+    type: complex
+    vlen: '1'
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [272, 328.0]
+    rotation: 0
+    state: true
+- name: blocks_deinterleave_0
+  id: blocks_deinterleave
+  parameters:
+    affinity: ''
+    alias: ''
+    blocksize: '1'
+    comment: ''
+    maxoutbuf: '0'
+    minoutbuf: '0'
+    num_streams: '2'
+    type: float
+    vlen: '1'
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [744, 792.0]
+    rotation: 180
+    state: true
+- name: blocks_multiply_const_vxx_0
+  id: blocks_multiply_const_vxx
+  parameters:
+    affinity: ''
+    alias: ''
+    comment: ''
+    const: mag_diff
+    maxoutbuf: '0'
+    minoutbuf: '0'
+    type: complex
+    vlen: '1'
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [928, 388.0]
+    rotation: 0
+    state: true
+- name: blocks_multiply_matrix_xx_0
+  id: blocks_multiply_matrix_xx
+  parameters:
+    A: array_manifold_matrix
+    affinity: ''
+    alias: ''
+    comment: ''
+    maxoutbuf: '0'
+    minoutbuf: '0'
+    tag_propagation_policy: gr.TPP_ALL_TO_ALL
+    type: complex
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [536, 328.0]
+    rotation: 0
+    state: true
+- name: blocks_throttle_0_0
+  id: blocks_throttle
+  parameters:
+    affinity: ''
+    alias: ''
+    comment: ''
+    ignoretag: 'True'
+    maxoutbuf: '0'
+    minoutbuf: '0'
+    samples_per_second: sample_rate
+    type: complex
+    vlen: '1'
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [352, 340.0]
+    rotation: 0
+    state: enabled
+- name: blocks_throttle_0_0_0
+  id: blocks_throttle
+  parameters:
+    affinity: ''
+    alias: ''
+    comment: ''
+    ignoretag: 'True'
+    maxoutbuf: '0'
+    minoutbuf: '0'
+    samples_per_second: sample_rate
+    type: complex
+    vlen: '1'
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [352, 572.0]
+    rotation: 0
+    state: enabled
+- name: blocks_vector_to_stream_0
+  id: blocks_vector_to_stream
+  parameters:
+    affinity: ''
+    alias: ''
+    comment: ''
+    maxoutbuf: '0'
+    minoutbuf: '0'
+    num_items: '2'
+    type: float
+    vlen: '1'
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [880, 808.0]
+    rotation: 180
+    state: true
+- name: import_0
+  id: import
+  parameters:
+    alias: ''
+    comment: ''
+    imports: import numpy
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [8, 140.0]
+    rotation: 0
+    state: enabled
+- name: qtgui_number_sink_0
+  id: qtgui_number_sink
+  parameters:
+    affinity: ''
+    alias: ''
+    autoscale: 'False'
+    avg: '0'
+    color1: ("black", "black")
+    color10: ("black", "black")
+    color2: ("black", "black")
+    color3: ("black", "black")
+    color4: ("black", "black")
+    color5: ("black", "black")
+    color6: ("black", "black")
+    color7: ("black", "black")
+    color8: ("black", "black")
+    color9: ("black", "black")
+    comment: ''
+    factor1: '1'
+    factor10: '1'
+    factor2: '1'
+    factor3: '1'
+    factor4: '1'
+    factor5: '1'
+    factor6: '1'
+    factor7: '1'
+    factor8: '1'
+    factor9: '1'
+    graph_type: qtgui.NUM_GRAPH_HORIZ
+    gui_hint: ''
+    label1: AoA 1
+    label10: ''
+    label2: AoA 2
+    label3: ''
+    label4: ''
+    label5: ''
+    label6: ''
+    label7: ''
+    label8: ''
+    label9: ''
+    max: '180'
+    min: '0'
+    name: '""'
+    nconnections: '2'
+    type: float
+    unit1: ''
+    unit10: ''
+    unit2: ''
+    unit3: ''
+    unit4: ''
+    unit5: ''
+    unit6: ''
+    unit7: ''
+    unit8: ''
+    unit9: ''
+    update_time: '0.10'
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [536, 788.0]
+    rotation: 180
+    state: true
+- name: qtgui_vector_sink_f_0
+  id: qtgui_vector_sink_f
+  parameters:
+    affinity: ''
+    alias: ''
+    alpha1: '1.0'
+    alpha10: '1.0'
+    alpha2: '1.0'
+    alpha3: '1.0'
+    alpha4: '1.0'
+    alpha5: '1.0'
+    alpha6: '1.0'
+    alpha7: '1.0'
+    alpha8: '1.0'
+    alpha9: '1.0'
+    autoscale: 'False'
+    average: '1.0'
+    color1: '"blue"'
+    color10: '"dark blue"'
+    color2: '"red"'
+    color3: '"green"'
+    color4: '"black"'
+    color5: '"cyan"'
+    color6: '"magenta"'
+    color7: '"yellow"'
+    color8: '"dark red"'
+    color9: '"dark green"'
+    comment: ''
+    grid: 'True'
+    gui_hint: ''
+    label1: ''
+    label10: ''
+    label2: ''
+    label3: ''
+    label4: ''
+    label5: ''
+    label6: ''
+    label7: ''
+    label8: ''
+    label9: ''
+    maxoutbuf: '0'
+    minoutbuf: '0'
+    name: '"MUSIC Pspectrum"'
+    nconnections: '1'
+    ref_level: '0'
+    showports: 'False'
+    update_time: '0.1'
+    vlen: '1800'
+    width1: '1'
+    width10: '1'
+    width2: '1'
+    width3: '1'
+    width4: '1'
+    width5: '1'
+    width6: '1'
+    width7: '1'
+    width8: '1'
+    width9: '1'
+    x_axis_label: '"Angle"'
+    x_start: '0'
+    x_step: 180/1024
+    x_units: '""'
+    y_axis_label: '"Pspectrum"'
+    y_units: '""'
+    ymax: '5'
+    ymin: '-60'
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [808, 596.0]
+    rotation: 180
+    state: true
+
+connections:
+- [analog_noise_source_x_0, '0', blocks_add_xx_0_0, '1']
+- [analog_noise_source_x_1, '0', blocks_add_xx_0, '1']
+- [analog_noise_source_x_2, '0', aoa_shift_phase_multiple_hier_0, '4']
+- [analog_noise_source_x_2_0, '0', aoa_shift_phase_multiple_hier_0, '6']
+- [analog_noise_source_x_2_0_0, '0', aoa_shift_phase_multiple_hier_0, '5']
+- [analog_noise_source_x_2_0_0_0, '0', aoa_shift_phase_multiple_hier_0, '7']
+- [analog_sig_source_x_0, '0', blocks_add_xx_0_0, '0']
+- [analog_sig_source_x_0_0, '0', blocks_add_xx_0, '0']
+- [aoa_MUSIC_lin_array_0, '0', qtgui_vector_sink_f_0, '0']
+- [aoa_autocorrelate_0, '0', aoa_MUSIC_lin_array_0, '0']
+- [aoa_autocorrelate_0, '0', aoa_rootMUSIC_linear_array_0, '0']
+- [aoa_rootMUSIC_linear_array_0, '0', blocks_vector_to_stream_0, '0']
+- [aoa_shift_phase_multiple_hier_0, '0', blocks_multiply_const_vxx_0, '0']
+- [aoa_shift_phase_multiple_hier_0, '1', aoa_autocorrelate_0, '1']
+- [aoa_shift_phase_multiple_hier_0, '2', aoa_autocorrelate_0, '2']
+- [aoa_shift_phase_multiple_hier_0, '3', aoa_autocorrelate_0, '3']
+- [blocks_add_xx_0, '0', blocks_throttle_0_0_0, '0']
+- [blocks_add_xx_0_0, '0', blocks_throttle_0_0, '0']
+- [blocks_deinterleave_0, '0', qtgui_number_sink_0, '0']
+- [blocks_deinterleave_0, '1', qtgui_number_sink_0, '1']
+- [blocks_multiply_const_vxx_0, '0', aoa_autocorrelate_0, '0']
+- [blocks_multiply_matrix_xx_0, '0', aoa_shift_phase_multiple_hier_0, '0']
+- [blocks_multiply_matrix_xx_0, '1', aoa_shift_phase_multiple_hier_0, '1']
+- [blocks_multiply_matrix_xx_0, '2', aoa_shift_phase_multiple_hier_0, '2']
+- [blocks_multiply_matrix_xx_0, '3', aoa_shift_phase_multiple_hier_0, '3']
+- [blocks_throttle_0_0, '0', blocks_multiply_matrix_xx_0, '0']
+- [blocks_throttle_0_0_0, '0', blocks_multiply_matrix_xx_0, '1']
+- [blocks_vector_to_stream_0, '0', blocks_deinterleave_0, '0']
+
+metadata:
+  file_format: 1

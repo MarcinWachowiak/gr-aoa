@@ -1,0 +1,37 @@
+id: aoa_precise_moving_average
+label: Precise Moving Average
+category: '[AoA]'
+documentation: |-
+  Precise version of Moving Average that uses accumulator and scale od double type to enable greater lengths of buffer and greater required number of maximum iterations enabling more precise results
+  (Tested with window size of 100MS)
+templates:
+  imports: import aoa
+  make: aoa.precise_moving_average(${length}, ${max_iter})
+
+parameters:
+- id: length
+  label: Length
+  dtype: int
+  default: '1000'
+- id: max_iter
+  label: Max Iter
+  dtype: int
+  default: '4096'
+
+inputs:
+- label: in
+  domain: stream
+  dtype: float
+  vlen: 1
+  optional: 1
+
+outputs:
+- label: out
+  domain: stream
+  dtype: float
+  vlen: 1
+  optional: 1
+
+#  'file_format' specifies the version of the GRC yml format used in the file
+#  and should usually not be changed.
+file_format: 1

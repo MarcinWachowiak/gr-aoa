@@ -1,0 +1,44 @@
+id: aoa_calc_phase_diff
+label: Calculate phase difference
+category: '[AoA]'
+documentation: |-
+  Calculate phase difference between two signals
+
+parameters:
+- id: node_idx
+  label: Node index
+  dtype: int
+  default: 1
+- id: norm_spacing
+  label: Normalized spacing
+  dtype: float
+  default: 0.5
+
+inputs:
+- label: ref
+  domain: stream
+  dtype: complex
+  vlen: 1
+  optional: 0
+- label: in
+  domain: stream
+  dtype: complex
+  vlen: 1
+  optional: 0
+
+asserts:
+- ${node_idx > 0}
+-  ${norm_spacing <= 0.5}
+
+outputs:
+- label: angle
+  domain: stream
+  dtype: float
+  vlen: 1
+  optional: 0
+
+templates:
+  imports: import aoa
+  make: aoa.calc_phase_diff(${node_idx}, ${norm_spacing})
+
+file_format: 1

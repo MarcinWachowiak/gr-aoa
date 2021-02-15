@@ -1,0 +1,42 @@
+id: aoa_shift_phase_multiple_hier
+label: Shift phase (M)
+category: '[AoA]'
+documentation: |-
+  Simple block used to align phases of the ULA signals, 
+  based on provided angle values
+  (hier block, multiple instances of shift phase)
+
+templates:
+  imports: import aoa
+  make: aoa.shift_phase_multiple_hier(${num_signals})
+
+parameters:
+- id: num_signals
+  label: Number of signals
+  dtype: int
+  default: 1
+  hide: none
+
+inputs:
+-   label: in
+    dtype: complex
+    vlen: 1
+    multiplicity: ${num_signals}
+    optional: 0
+
+-   label: angle
+    dtype: float
+    vlen: 1
+    multiplicity: ${num_signals}
+    optional: 0
+
+
+outputs:
+-   label: out
+    dtype: complex
+    vlen: 1
+    multiplicity: ${num_signals}
+    optional: 0
+
+
+file_format: 1

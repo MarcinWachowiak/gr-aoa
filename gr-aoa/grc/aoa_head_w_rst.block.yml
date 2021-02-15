@@ -1,0 +1,66 @@
+id: aoa_head_w_rst
+label: Head with RST
+category: '[AoA]'
+
+documentation: |-
+  This block collects first n samples and copies them to output once.
+  Can be resetted via callback: reset(bool dump_buffer)
+  dump_buffer flag decides whether after reset samples 
+  accumulated at the input should be deleted or not
+  Example:  self.aoa_head_w_rst_0.reset(True)
+
+parameters:
+-   id: type
+    label: Type
+    dtype: enum
+    options: [complex, float, int, short, byte]
+    option_attributes:
+        size: [gr.sizeof_gr_complex, gr.sizeof_float, gr.sizeof_int, gr.sizeof_short,
+            gr.sizeof_char]
+    hide: part
+-   id: num_items
+    label: Num Items
+    dtype: int
+    default: '1024'
+-   id: vlen
+    label: Vec Length
+    dtype: int
+    default: '1'
+    hide: ${ 'part' if vlen == 1 else 'none' }
+-   id: dump_buff
+    label: Dump input buffer flag
+    dtype: bool
+    default: 'True'
+    hide: all
+
+
+inputs:
+-   domain: stream
+    dtype: ${ type }
+    vlen: ${ vlen }
+    optional: 0
+
+
+outputs:
+-   domain: stream
+    dtype: ${ type }
+    vlen: ${ vlen }
+    optional: 0
+
+
+-   domain: message
+    id: status
+    optional: 1
+
+
+asserts:
+- ${ vlen > 0 }
+
+templates:
+  imports: import aoa
+  make: aoa.head_w_rst(${type.size}*${vlen}, ${num_items})
+  callbacks:
+    - set_length(${num_items})
+    - reset(${dump_buff})
+
+file_format: 1

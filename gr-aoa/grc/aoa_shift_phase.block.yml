@@ -1,0 +1,37 @@
+id: aoa_shift_phase
+label: Shift phase
+category: '[AoA]'
+documentation: |-
+  Documentation of block
+  Shift phase by a value of radians specified at the coeff input 
+
+parameters:
+- id: dummy_param
+  label: dummy param
+  dtype: int
+  hide: all
+
+inputs:
+- label: in
+  domain: stream
+  dtype: complex
+  vlen: 1
+  optional: 0
+- label: angle
+  domain: stream
+  dtype: float
+  vlen: 1
+  optional: 0
+
+outputs:
+- label: out
+  domain: stream
+  dtype: complex
+  vlen: 1
+  optional: 0
+
+templates:
+  imports: import aoa
+  make: aoa.shift_phase()
+
+file_format: 1

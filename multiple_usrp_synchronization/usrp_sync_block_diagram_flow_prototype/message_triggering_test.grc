@@ -1,0 +1,209 @@
+options:
+  parameters:
+    author: ''
+    category: '[GRC Hier Blocks]'
+    cmake_opt: ''
+    comment: "In real case scenario remember to remove \nthrottle and subordinate\
+      \ the delay to the sample\n rate of the device (USRP, SDR dongle etc.) in order\
+      \ \nto get reliable delays and timings (like the sample \nrate is defining the\
+      \ clock of the flowchart in case of delay)"
+    copyright: ''
+    description: ''
+    gen_cmake: 'On'
+    gen_linking: dynamic
+    generate_options: qt_gui
+    hier_block_src_path: '.:'
+    id: run_message_triggering_test
+    max_nouts: '0'
+    output_language: python
+    placement: (0,0)
+    qt_qss_theme: ''
+    realtime_scheduling: ''
+    run: 'True'
+    run_command: '{python} -u {filename}'
+    run_options: prompt
+    sizing_mode: fixed
+    thread_safe_setters: ''
+    title: Message triggering test
+    window_size: ''
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [8, 8]
+    rotation: 0
+    state: enabled
+
+blocks:
+- name: delay_clk_freq
+  id: variable
+  parameters:
+    comment: ''
+    value: '10000'
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [200, 436.0]
+    rotation: 0
+    state: true
+- name: n_delay_secs
+  id: variable
+  parameters:
+    comment: ''
+    value: '5'
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [144, 308.0]
+    rotation: 0
+    state: true
+- name: samp_rate
+  id: variable
+  parameters:
+    comment: ''
+    value: '10000'
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [8, 180.0]
+    rotation: 0
+    state: true
+- name: trigger_cmd
+  id: variable_tag_object
+  parameters:
+    comment: ''
+    key: pmt.intern("TRIGGER")
+    offset: '0'
+    src: pmt.intern("src")
+    value: pmt.PMT_T
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [8, 252.0]
+    rotation: 0
+    state: true
+- name: blocks_delay_0_0
+  id: blocks_delay
+  parameters:
+    affinity: ''
+    alias: ''
+    comment: ''
+    delay: n_delay_secs*delay_clk_freq
+    maxoutbuf: '0'
+    minoutbuf: '0'
+    num_ports: '1'
+    type: byte
+    vlen: '1'
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [152, 380.0]
+    rotation: 0
+    state: true
+- name: blocks_message_debug_0_0
+  id: blocks_message_debug
+  parameters:
+    affinity: ''
+    alias: ''
+    comment: ''
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [640, 400.0]
+    rotation: 0
+    state: true
+- name: blocks_throttle_0_0_0
+  id: blocks_throttle
+  parameters:
+    affinity: ''
+    alias: ''
+    comment: ''
+    ignoretag: 'True'
+    maxoutbuf: '0'
+    minoutbuf: '0'
+    samples_per_second: delay_clk_freq
+    type: byte
+    vlen: '1'
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [264, 380.0]
+    rotation: 0
+    state: true
+- name: blocks_vector_source_x_0_0_0
+  id: blocks_vector_source_x
+  parameters:
+    affinity: ''
+    alias: ''
+    comment: ''
+    maxoutbuf: '0'
+    minoutbuf: '0'
+    repeat: 'False'
+    tags: '[trigger_cmd]'
+    type: byte
+    vector: (0,0)
+    vlen: '1'
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [8, 364.0]
+    rotation: 0
+    state: enabled
+- name: pdu_utils_tag_message_trigger_0_0
+  id: pdu_utils_tag_message_trigger
+  parameters:
+    affinity: ''
+    alias: ''
+    arm_key: pmt.PMT_NIL
+    comment: ''
+    delay_time: '5'
+    holdoff: '0'
+    maxoutbuf: '0'
+    minoutbuf: '0'
+    msg: sync_pymod.get_cmd_dict()
+    samp_rate: samp_rate
+    showport: 'True'
+    start_time: '0.0'
+    tpdu_mode: 'False'
+    trig_key: pmt.intern("TRIGGER")
+    type: b
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [424, 380.0]
+    rotation: 0
+    state: true
+- name: sync_pymod
+  id: epy_module
+  parameters:
+    alias: ''
+    comment: ''
+    source_code: "import gnuradio\nimport pmt\n\ndef get_cmd_dict():\n\tcmd = pmt.make_dict()\n\
+      \tcmd = pmt.dict_add(cmd, pmt.intern(\"time\"), pmt.from_long(10))\n\tcmd =\
+      \ pmt.dict_add(cmd, pmt.intern(\"freq\"), pmt.from_double(94.6e+6))\n\treturn\
+      \ cmd\n"
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [456, 332.0]
+    rotation: 0
+    state: true
+
+connections:
+- [blocks_delay_0_0, '0', blocks_throttle_0_0_0, '0']
+- [blocks_throttle_0_0_0, '0', pdu_utils_tag_message_trigger_0_0, '0']
+- [blocks_vector_source_x_0_0_0, '0', blocks_delay_0_0, '0']
+- [pdu_utils_tag_message_trigger_0_0, msg, blocks_message_debug_0_0, print]
+
+metadata:
+  file_format: 1

@@ -1,0 +1,46 @@
+id: aoa_calc_phase_diff_multiple_hier
+label: Calculate phase diff (M)
+category: '[AoA]'
+documentation: |-
+  Simple block used to calculate phase differences of the ULA signals, 
+  (hier block, multiple instances of calculate phase difference)
+
+templates:
+  imports: import aoa
+  make: aoa.calc_phase_diff_multiple_hier(${num_signals},${norm_spacing})
+
+parameters:
+- id: num_signals
+  label: Number of signals
+  dtype: int
+  default: 1
+- id: norm_spacing
+  label: Normalized spacing
+  dtype: float
+  default: 0.5
+
+inputs:
+- label: ref
+  domain: stream
+  dtype: complex
+  vlen: 1
+  optional: 0
+- label: in
+  domain: stream
+  dtype: complex
+  vlen: 1
+  multiplicity: ${num_signals}
+  optional: 0
+
+asserts:
+- ${norm_spacing <= 0.5}
+
+outputs:
+-   label: angle
+    dtype: float
+    vlen: 1
+    multiplicity: ${num_signals}
+    optional: 0
+
+
+file_format: 1

@@ -1,0 +1,1266 @@
+options:
+  parameters:
+    author: ''
+    category: '[GRC Hier Blocks]'
+    cmake_opt: ''
+    comment: ''
+    copyright: ''
+    description: ''
+    gen_cmake: 'On'
+    gen_linking: dynamic
+    generate_options: qt_gui
+    hier_block_src_path: '.:'
+    id: run_music_4rx_2tx_autocorrelate_eval
+    max_nouts: '0'
+    output_language: python
+    placement: (0,0)
+    qt_qss_theme: ''
+    realtime_scheduling: ''
+    run: 'True'
+    run_command: '{python} -u {filename}'
+    run_options: prompt
+    sizing_mode: fixed
+    thread_safe_setters: ''
+    title: MUSIC 4 RX, 2 SRC autocorrelate eval
+    window_size: ''
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [8, 8]
+    rotation: 0
+    state: enabled
+
+blocks:
+- name: NormSpacing
+  id: variable
+  parameters:
+    comment: ''
+    value: '0.5'
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [728, 76.0]
+    rotation: 0
+    state: true
+- name: NumArrayElements
+  id: variable
+  parameters:
+    comment: ''
+    value: '4'
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [728, 12.0]
+    rotation: 0
+    state: true
+- name: NumTargets
+  id: variable
+  parameters:
+    comment: ''
+    value: '2'
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [728, 140.0]
+    rotation: 0
+    state: true
+- name: ampl_noise
+  id: variable_qtgui_range
+  parameters:
+    comment: ''
+    gui_hint: ''
+    label: ''
+    min_len: '200'
+    orient: Qt.Horizontal
+    rangeType: float
+    start: '0'
+    step: '0.05'
+    stop: '1'
+    value: '0.1'
+    widget: counter_slider
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [1080, 12.0]
+    rotation: 0
+    state: true
+- name: amv0
+  id: variable
+  parameters:
+    comment: ''
+    value: numpy.exp(-1j*ant_locs*2*numpy.pi*numpy.cos(theta0))
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [184, 204.0]
+    rotation: 0
+    state: enabled
+- name: amv1
+  id: variable
+  parameters:
+    comment: ''
+    value: numpy.exp(-1j*ant_locs*2*numpy.pi*numpy.cos(theta1))
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [376, 204.0]
+    rotation: 0
+    state: enabled
+- name: ant_locs
+  id: variable
+  parameters:
+    comment: ''
+    value: numpy.dot(NormSpacing, numpy.arange(NumArrayElements/2, -NumArrayElements/2,
+      -1) if (NumArrayElements%2==1) else numpy.arange(NumArrayElements/2-0.5, -NumArrayElements/2-0.5,
+      -1))
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [528, 12.0]
+    rotation: 0
+    state: enabled
+- name: array_manifold_matrix
+  id: variable
+  parameters:
+    comment: ''
+    value: numpy.array([amv0, amv1]).transpose()
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [528, 76.0]
+    rotation: 0
+    state: enabled
+- name: mag_diff
+  id: variable_qtgui_range
+  parameters:
+    comment: ''
+    gui_hint: ''
+    label: Magnitude difference
+    min_len: '100'
+    orient: Qt.Horizontal
+    rangeType: float
+    start: '0.5'
+    step: '0.01'
+    stop: '1.5'
+    value: '1'
+    widget: counter_slider
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [888, 12.0]
+    rotation: 0
+    state: enabled
+- name: n_plt_points
+  id: variable
+  parameters:
+    comment: ''
+    value: int(1e4)
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [1936, 820.0]
+    rotation: 0
+    state: true
+- name: overlap_size
+  id: variable
+  parameters:
+    comment: ''
+    value: 2**10
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [1160, 352.0]
+    rotation: 0
+    state: true
+- name: pha_noise
+  id: variable_qtgui_range
+  parameters:
+    comment: ''
+    gui_hint: ''
+    label: ''
+    min_len: '200'
+    orient: Qt.Horizontal
+    rangeType: float
+    start: '0'
+    step: '0.05'
+    stop: '2'
+    value: '0.5'
+    widget: counter_slider
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [1224, 12.0]
+    rotation: 0
+    state: true
+- name: sample_rate
+  id: variable
+  parameters:
+    comment: ''
+    value: 1e6
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [8, 76.0]
+    rotation: 0
+    state: true
+- name: snap_size
+  id: variable
+  parameters:
+    comment: ''
+    value: 2**12
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [1064, 352.0]
+    rotation: 0
+    state: true
+- name: theta0
+  id: variable
+  parameters:
+    comment: ''
+    value: numpy.pi*theta0_deg/180
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [184, 140.0]
+    rotation: 0
+    state: enabled
+- name: theta0_deg
+  id: variable_qtgui_range
+  parameters:
+    comment: ''
+    gui_hint: ''
+    label: AoA 1
+    min_len: '200'
+    orient: Qt.Horizontal
+    rangeType: float
+    start: '0'
+    step: '1'
+    stop: '180'
+    value: '40'
+    widget: counter_slider
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [184, 12.0]
+    rotation: 0
+    state: enabled
+- name: theta1
+  id: variable
+  parameters:
+    comment: ''
+    value: numpy.pi*theta1_deg/180
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [376, 140.0]
+    rotation: 0
+    state: enabled
+- name: theta1_deg
+  id: variable_qtgui_range
+  parameters:
+    comment: ''
+    gui_hint: ''
+    label: AoA 2
+    min_len: '200'
+    orient: Qt.Horizontal
+    rangeType: float
+    start: '0'
+    step: '1'
+    stop: '180'
+    value: '120'
+    widget: counter_slider
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [376, 12.0]
+    rotation: 0
+    state: enabled
+- name: analog_noise_source_x_0
+  id: analog_noise_source_x
+  parameters:
+    affinity: ''
+    alias: ''
+    amp: ampl_noise
+    comment: ''
+    maxoutbuf: '0'
+    minoutbuf: '0'
+    noise_type: analog.GR_GAUSSIAN
+    seed: '972353'
+    type: complex
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [32, 424.0]
+    rotation: 0
+    state: true
+- name: analog_noise_source_x_1
+  id: analog_noise_source_x
+  parameters:
+    affinity: ''
+    alias: ''
+    amp: ampl_noise
+    comment: ''
+    maxoutbuf: '0'
+    minoutbuf: '0'
+    noise_type: analog.GR_GAUSSIAN
+    seed: '3135154'
+    type: complex
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [32, 648.0]
+    rotation: 0
+    state: true
+- name: analog_noise_source_x_2
+  id: analog_noise_source_x
+  parameters:
+    affinity: ''
+    alias: ''
+    amp: pha_noise
+    comment: ''
+    maxoutbuf: '0'
+    minoutbuf: '0'
+    noise_type: analog.GR_GAUSSIAN
+    seed: '844651711'
+    type: float
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [624, 600.0]
+    rotation: 0
+    state: true
+- name: analog_noise_source_x_2_0
+  id: analog_noise_source_x
+  parameters:
+    affinity: ''
+    alias: ''
+    amp: pha_noise
+    comment: ''
+    maxoutbuf: '0'
+    minoutbuf: '0'
+    noise_type: analog.GR_GAUSSIAN
+    seed: '2531'
+    type: float
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [624, 760.0]
+    rotation: 0
+    state: true
+- name: analog_noise_source_x_2_0_0
+  id: analog_noise_source_x
+  parameters:
+    affinity: ''
+    alias: ''
+    amp: pha_noise
+    comment: ''
+    maxoutbuf: '0'
+    minoutbuf: '0'
+    noise_type: analog.GR_GAUSSIAN
+    seed: '6732'
+    type: float
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [624, 680.0]
+    rotation: 0
+    state: true
+- name: analog_noise_source_x_2_0_0_0
+  id: analog_noise_source_x
+  parameters:
+    affinity: ''
+    alias: ''
+    amp: pha_noise
+    comment: ''
+    maxoutbuf: '0'
+    minoutbuf: '0'
+    noise_type: analog.GR_GAUSSIAN
+    seed: '92114112'
+    type: float
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [624, 840.0]
+    rotation: 0
+    state: true
+- name: analog_sig_source_x_0
+  id: analog_sig_source_x
+  parameters:
+    affinity: ''
+    alias: ''
+    amp: '1'
+    comment: ''
+    freq: 10E+3
+    maxoutbuf: '0'
+    minoutbuf: '0'
+    offset: '0'
+    phase: '0'
+    samp_rate: sample_rate
+    type: complex
+    waveform: analog.GR_COS_WAVE
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [24, 284.0]
+    rotation: 0
+    state: enabled
+- name: analog_sig_source_x_0_0
+  id: analog_sig_source_x
+  parameters:
+    affinity: ''
+    alias: ''
+    amp: '1'
+    comment: ''
+    freq: 30E+3
+    maxoutbuf: '0'
+    minoutbuf: '0'
+    offset: '0'
+    phase: '0'
+    samp_rate: sample_rate
+    type: complex
+    waveform: analog.GR_COS_WAVE
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [24, 516.0]
+    rotation: 0
+    state: enabled
+- name: aoa_MUSIC_lin_array_0
+  id: aoa_MUSIC_lin_array
+  parameters:
+    affinity: ''
+    alias: ''
+    comment: ''
+    maxoutbuf: '0'
+    minoutbuf: '0'
+    norm_spacing: NormSpacing
+    num_inputs: NumArrayElements
+    num_targets: NumTargets
+    pspectrum_len: '1024'
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [1352, 304.0]
+    rotation: 0
+    state: true
+- name: aoa_autocorrelate_0
+  id: aoa_autocorrelate
+  parameters:
+    affinity: ''
+    alias: ''
+    avg_method: '0'
+    comment: ''
+    maxoutbuf: '0'
+    minoutbuf: '0'
+    num_inputs: '4'
+    overlap_size: overlap_size
+    snapshot_size: snap_size
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [1096, 432.0]
+    rotation: 0
+    state: true
+- name: aoa_autocorrelate_0_0
+  id: aoa_autocorrelate
+  parameters:
+    affinity: ''
+    alias: ''
+    avg_method: '1'
+    comment: ''
+    maxoutbuf: '0'
+    minoutbuf: '0'
+    num_inputs: '4'
+    overlap_size: overlap_size
+    snapshot_size: snap_size
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [1080, 576.0]
+    rotation: 0
+    state: true
+- name: aoa_autocorrelate_0_0_0
+  id: aoa_autocorrelate
+  parameters:
+    affinity: ''
+    alias: ''
+    avg_method: '0'
+    comment: ''
+    maxoutbuf: '0'
+    minoutbuf: '0'
+    num_inputs: '4'
+    overlap_size: '0'
+    snapshot_size: snap_size
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [1096, 720.0]
+    rotation: 0
+    state: true
+- name: aoa_rootMUSIC_linear_array_0
+  id: aoa_rootMUSIC_linear_array
+  parameters:
+    affinity: ''
+    alias: ''
+    comment: ''
+    maxoutbuf: '0'
+    minoutbuf: '0'
+    norm_spacing: NormSpacing
+    num_inputs: NumArrayElements
+    num_targets: NumTargets
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [1352, 460.0]
+    rotation: 0
+    state: true
+- name: aoa_rootMUSIC_linear_array_0_0
+  id: aoa_rootMUSIC_linear_array
+  parameters:
+    affinity: ''
+    alias: ''
+    comment: ''
+    maxoutbuf: '0'
+    minoutbuf: '0'
+    norm_spacing: NormSpacing
+    num_inputs: NumArrayElements
+    num_targets: NumTargets
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [1352, 604.0]
+    rotation: 0
+    state: true
+- name: aoa_rootMUSIC_linear_array_0_0_0
+  id: aoa_rootMUSIC_linear_array
+  parameters:
+    affinity: ''
+    alias: ''
+    comment: ''
+    maxoutbuf: '0'
+    minoutbuf: '0'
+    norm_spacing: NormSpacing
+    num_inputs: NumArrayElements
+    num_targets: NumTargets
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [1352, 748.0]
+    rotation: 0
+    state: true
+- name: aoa_shift_phase_0
+  id: aoa_shift_phase
+  parameters:
+    affinity: ''
+    alias: ''
+    comment: ''
+    dummy_param: ''
+    maxoutbuf: '0'
+    minoutbuf: '0'
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [888, 496.0]
+    rotation: 0
+    state: true
+- name: aoa_shift_phase_0_0
+  id: aoa_shift_phase
+  parameters:
+    affinity: ''
+    alias: ''
+    comment: ''
+    dummy_param: ''
+    maxoutbuf: '0'
+    minoutbuf: '0'
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [888, 416.0]
+    rotation: 0
+    state: true
+- name: aoa_shift_phase_0_0_0
+  id: aoa_shift_phase
+  parameters:
+    affinity: ''
+    alias: ''
+    comment: ''
+    dummy_param: ''
+    maxoutbuf: '0'
+    minoutbuf: '0'
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [888, 656.0]
+    rotation: 0
+    state: true
+- name: aoa_shift_phase_0_0_0_0
+  id: aoa_shift_phase
+  parameters:
+    affinity: ''
+    alias: ''
+    comment: ''
+    dummy_param: ''
+    maxoutbuf: '0'
+    minoutbuf: '0'
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [888, 576.0]
+    rotation: 0
+    state: true
+- name: blocks_add_xx_0
+  id: blocks_add_xx
+  parameters:
+    affinity: ''
+    alias: ''
+    comment: ''
+    maxoutbuf: '0'
+    minoutbuf: '0'
+    num_inputs: '2'
+    type: complex
+    vlen: '1'
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [248, 560.0]
+    rotation: 0
+    state: true
+- name: blocks_add_xx_0_0
+  id: blocks_add_xx
+  parameters:
+    affinity: ''
+    alias: ''
+    comment: ''
+    maxoutbuf: '0'
+    minoutbuf: '0'
+    num_inputs: '2'
+    type: complex
+    vlen: '1'
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [248, 328.0]
+    rotation: 0
+    state: true
+- name: blocks_deinterleave_0
+  id: blocks_deinterleave
+  parameters:
+    affinity: ''
+    alias: ''
+    blocksize: '1'
+    comment: ''
+    maxoutbuf: '0'
+    minoutbuf: '0'
+    num_streams: '2'
+    type: float
+    vlen: '1'
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [1720, 464.0]
+    rotation: 0
+    state: true
+- name: blocks_deinterleave_0_0
+  id: blocks_deinterleave
+  parameters:
+    affinity: ''
+    alias: ''
+    blocksize: '1'
+    comment: ''
+    maxoutbuf: '0'
+    minoutbuf: '0'
+    num_streams: '2'
+    type: float
+    vlen: '1'
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [1720, 608.0]
+    rotation: 0
+    state: true
+- name: blocks_deinterleave_0_0_0
+  id: blocks_deinterleave
+  parameters:
+    affinity: ''
+    alias: ''
+    blocksize: '1'
+    comment: ''
+    maxoutbuf: '0'
+    minoutbuf: '0'
+    num_streams: '2'
+    type: float
+    vlen: '1'
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [1720, 752.0]
+    rotation: 0
+    state: true
+- name: blocks_multiply_const_vxx_0
+  id: blocks_multiply_const_vxx
+  parameters:
+    affinity: ''
+    alias: ''
+    comment: ''
+    const: mag_diff
+    maxoutbuf: '0'
+    minoutbuf: '0'
+    type: complex
+    vlen: '1'
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [720, 412.0]
+    rotation: 0
+    state: true
+- name: blocks_multiply_matrix_xx_0
+  id: blocks_multiply_matrix_xx
+  parameters:
+    A: array_manifold_matrix
+    affinity: ''
+    alias: ''
+    comment: ''
+    maxoutbuf: '0'
+    minoutbuf: '0'
+    tag_propagation_policy: gr.TPP_ALL_TO_ALL
+    type: complex
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [536, 416.0]
+    rotation: 0
+    state: true
+- name: blocks_throttle_0_0
+  id: blocks_throttle
+  parameters:
+    affinity: ''
+    alias: ''
+    comment: ''
+    ignoretag: 'True'
+    maxoutbuf: '0'
+    minoutbuf: '0'
+    samples_per_second: sample_rate
+    type: complex
+    vlen: '1'
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [336, 340.0]
+    rotation: 0
+    state: enabled
+- name: blocks_throttle_0_0_0
+  id: blocks_throttle
+  parameters:
+    affinity: ''
+    alias: ''
+    comment: ''
+    ignoretag: 'True'
+    maxoutbuf: '0'
+    minoutbuf: '0'
+    samples_per_second: sample_rate
+    type: complex
+    vlen: '1'
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [336, 572.0]
+    rotation: 0
+    state: enabled
+- name: blocks_vector_to_stream_0
+  id: blocks_vector_to_stream
+  parameters:
+    affinity: ''
+    alias: ''
+    comment: ''
+    maxoutbuf: '0'
+    minoutbuf: '0'
+    num_items: '2'
+    type: float
+    vlen: '1'
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [1560, 480.0]
+    rotation: 0
+    state: true
+- name: blocks_vector_to_stream_0_0
+  id: blocks_vector_to_stream
+  parameters:
+    affinity: ''
+    alias: ''
+    comment: ''
+    maxoutbuf: '0'
+    minoutbuf: '0'
+    num_items: '2'
+    type: float
+    vlen: '1'
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [1560, 624.0]
+    rotation: 0
+    state: true
+- name: blocks_vector_to_stream_0_0_0
+  id: blocks_vector_to_stream
+  parameters:
+    affinity: ''
+    alias: ''
+    comment: ''
+    maxoutbuf: '0'
+    minoutbuf: '0'
+    num_items: '2'
+    type: float
+    vlen: '1'
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [1560, 768.0]
+    rotation: 0
+    state: true
+- name: import_0
+  id: import
+  parameters:
+    alias: ''
+    comment: ''
+    imports: import numpy
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [8, 140.0]
+    rotation: 0
+    state: enabled
+- name: qtgui_number_sink_0
+  id: qtgui_number_sink
+  parameters:
+    affinity: ''
+    alias: ''
+    autoscale: 'False'
+    avg: '0'
+    color1: ("black", "black")
+    color10: ("black", "black")
+    color2: ("black", "black")
+    color3: ("black", "black")
+    color4: ("black", "black")
+    color5: ("black", "black")
+    color6: ("black", "black")
+    color7: ("black", "black")
+    color8: ("black", "black")
+    color9: ("black", "black")
+    comment: ''
+    factor1: '1'
+    factor10: '1'
+    factor2: '1'
+    factor3: '1'
+    factor4: '1'
+    factor5: '1'
+    factor6: '1'
+    factor7: '1'
+    factor8: '1'
+    factor9: '1'
+    graph_type: qtgui.NUM_GRAPH_HORIZ
+    gui_hint: ''
+    label1: ''
+    label10: ''
+    label2: ''
+    label3: ''
+    label4: ''
+    label5: ''
+    label6: ''
+    label7: ''
+    label8: ''
+    label9: ''
+    max: '180'
+    min: '0'
+    name: '""'
+    nconnections: '2'
+    type: float
+    unit1: ''
+    unit10: ''
+    unit2: ''
+    unit3: ''
+    unit4: ''
+    unit5: ''
+    unit6: ''
+    unit7: ''
+    unit8: ''
+    unit9: ''
+    update_time: '0.10'
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [1912, 460.0]
+    rotation: 0
+    state: true
+- name: qtgui_time_sink_x_0
+  id: qtgui_time_sink_x
+  parameters:
+    affinity: ''
+    alias: ''
+    alpha1: '1.0'
+    alpha10: '1.0'
+    alpha2: '1.0'
+    alpha3: '1.0'
+    alpha4: '1.0'
+    alpha5: '1.0'
+    alpha6: '1.0'
+    alpha7: '1.0'
+    alpha8: '1.0'
+    alpha9: '1.0'
+    autoscale: 'False'
+    axislabels: 'True'
+    color1: blue
+    color10: dark blue
+    color2: green
+    color3: yellow
+    color4: black
+    color5: cyan
+    color6: magenta
+    color7: yellow
+    color8: dark red
+    color9: dark green
+    comment: ''
+    ctrlpanel: 'False'
+    entags: 'True'
+    grid: 'True'
+    gui_hint: ''
+    label1: Foward
+    label10: Signal 10
+    label2: Foward-Backward
+    label3: Foward no overlap
+    label4: Signal 4
+    label5: Signal 5
+    label6: Signal 6
+    label7: Signal 7
+    label8: Signal 8
+    label9: Signal 9
+    legend: 'True'
+    marker1: '-1'
+    marker10: '-1'
+    marker2: '-1'
+    marker3: '-1'
+    marker4: '-1'
+    marker5: '-1'
+    marker6: '-1'
+    marker7: '-1'
+    marker8: '-1'
+    marker9: '-1'
+    name: '"AoA1"'
+    nconnections: '3'
+    size: n_plt_points
+    srate: sample_rate/snap_size
+    stemplot: 'False'
+    style1: '1'
+    style10: '1'
+    style2: '1'
+    style3: '1'
+    style4: '1'
+    style5: '1'
+    style6: '1'
+    style7: '1'
+    style8: '1'
+    style9: '1'
+    tr_chan: '0'
+    tr_delay: '0'
+    tr_level: '0.0'
+    tr_mode: qtgui.TRIG_MODE_FREE
+    tr_slope: qtgui.TRIG_SLOPE_POS
+    tr_tag: '""'
+    type: float
+    update_time: '0.10'
+    width1: '1'
+    width10: '1'
+    width2: '1'
+    width3: '1'
+    width4: '1'
+    width5: '1'
+    width6: '1'
+    width7: '1'
+    width8: '1'
+    width9: '1'
+    ylabel: Amplitude
+    ymax: '42'
+    ymin: '38'
+    yunit: '""'
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [1912, 576.0]
+    rotation: 0
+    state: true
+- name: qtgui_time_sink_x_0_0
+  id: qtgui_time_sink_x
+  parameters:
+    affinity: ''
+    alias: ''
+    alpha1: '1.0'
+    alpha10: '1.0'
+    alpha2: '1.0'
+    alpha3: '1.0'
+    alpha4: '1.0'
+    alpha5: '1.0'
+    alpha6: '1.0'
+    alpha7: '1.0'
+    alpha8: '1.0'
+    alpha9: '1.0'
+    autoscale: 'False'
+    axislabels: 'True'
+    color1: blue
+    color10: dark blue
+    color2: green
+    color3: yellow
+    color4: black
+    color5: cyan
+    color6: magenta
+    color7: yellow
+    color8: dark red
+    color9: dark green
+    comment: ''
+    ctrlpanel: 'False'
+    entags: 'True'
+    grid: 'True'
+    gui_hint: ''
+    label1: Foward
+    label10: Signal 10
+    label2: Foward-Backward
+    label3: Foward no overlap
+    label4: Signal 4
+    label5: Signal 5
+    label6: Signal 6
+    label7: Signal 7
+    label8: Signal 8
+    label9: Signal 9
+    legend: 'True'
+    marker1: '-1'
+    marker10: '-1'
+    marker2: '-1'
+    marker3: '-1'
+    marker4: '-1'
+    marker5: '-1'
+    marker6: '-1'
+    marker7: '-1'
+    marker8: '-1'
+    marker9: '-1'
+    name: '"AoA2"'
+    nconnections: '3'
+    size: n_plt_points
+    srate: sample_rate/snap_size
+    stemplot: 'False'
+    style1: '1'
+    style10: '1'
+    style2: '1'
+    style3: '1'
+    style4: '1'
+    style5: '1'
+    style6: '1'
+    style7: '1'
+    style8: '1'
+    style9: '1'
+    tr_chan: '0'
+    tr_delay: '0'
+    tr_level: '0.0'
+    tr_mode: qtgui.TRIG_MODE_FREE
+    tr_slope: qtgui.TRIG_SLOPE_POS
+    tr_tag: '""'
+    type: float
+    update_time: '0.10'
+    width1: '1'
+    width10: '1'
+    width2: '1'
+    width3: '1'
+    width4: '1'
+    width5: '1'
+    width6: '1'
+    width7: '1'
+    width8: '1'
+    width9: '1'
+    ylabel: Amplitude
+    ymax: '122'
+    ymin: '118'
+    yunit: '""'
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [1912, 720.0]
+    rotation: 0
+    state: true
+- name: qtgui_vector_sink_f_0
+  id: qtgui_vector_sink_f
+  parameters:
+    affinity: ''
+    alias: ''
+    alpha1: '1.0'
+    alpha10: '1.0'
+    alpha2: '1.0'
+    alpha3: '1.0'
+    alpha4: '1.0'
+    alpha5: '1.0'
+    alpha6: '1.0'
+    alpha7: '1.0'
+    alpha8: '1.0'
+    alpha9: '1.0'
+    autoscale: 'False'
+    average: '1.0'
+    color1: '"blue"'
+    color10: '"dark blue"'
+    color2: '"red"'
+    color3: '"green"'
+    color4: '"black"'
+    color5: '"cyan"'
+    color6: '"magenta"'
+    color7: '"yellow"'
+    color8: '"dark red"'
+    color9: '"dark green"'
+    comment: ''
+    grid: 'True'
+    gui_hint: ''
+    label1: ''
+    label10: ''
+    label2: ''
+    label3: ''
+    label4: ''
+    label5: ''
+    label6: ''
+    label7: ''
+    label8: ''
+    label9: ''
+    maxoutbuf: '0'
+    minoutbuf: '0'
+    name: '"MUSIC Pspectrum"'
+    nconnections: '1'
+    ref_level: '0'
+    showports: 'False'
+    update_time: '0.1'
+    vlen: '1024'
+    width1: '1'
+    width10: '1'
+    width2: '1'
+    width3: '1'
+    width4: '1'
+    width5: '1'
+    width6: '1'
+    width7: '1'
+    width8: '1'
+    width9: '1'
+    x_axis_label: '"Angle"'
+    x_start: '0'
+    x_step: 180/1024
+    x_units: '""'
+    y_axis_label: '"Pspectrum"'
+    y_units: '""'
+    ymax: '10'
+    ymin: '-80'
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [1560, 264.0]
+    rotation: 0
+    state: true
+
+connections:
+- [analog_noise_source_x_0, '0', blocks_add_xx_0_0, '1']
+- [analog_noise_source_x_1, '0', blocks_add_xx_0, '1']
+- [analog_noise_source_x_2, '0', aoa_shift_phase_0_0, '1']
+- [analog_noise_source_x_2_0, '0', aoa_shift_phase_0_0_0_0, '1']
+- [analog_noise_source_x_2_0_0, '0', aoa_shift_phase_0, '1']
+- [analog_noise_source_x_2_0_0_0, '0', aoa_shift_phase_0_0_0, '1']
+- [analog_sig_source_x_0, '0', blocks_add_xx_0_0, '0']
+- [analog_sig_source_x_0_0, '0', blocks_add_xx_0, '0']
+- [aoa_MUSIC_lin_array_0, '0', qtgui_vector_sink_f_0, '0']
+- [aoa_autocorrelate_0, '0', aoa_MUSIC_lin_array_0, '0']
+- [aoa_autocorrelate_0, '0', aoa_rootMUSIC_linear_array_0, '0']
+- [aoa_autocorrelate_0_0, '0', aoa_rootMUSIC_linear_array_0_0, '0']
+- [aoa_autocorrelate_0_0_0, '0', aoa_rootMUSIC_linear_array_0_0_0, '0']
+- [aoa_rootMUSIC_linear_array_0, '0', blocks_vector_to_stream_0, '0']
+- [aoa_rootMUSIC_linear_array_0_0, '0', blocks_vector_to_stream_0_0, '0']
+- [aoa_rootMUSIC_linear_array_0_0_0, '0', blocks_vector_to_stream_0_0_0, '0']
+- [aoa_shift_phase_0, '0', aoa_autocorrelate_0, '1']
+- [aoa_shift_phase_0, '0', aoa_autocorrelate_0_0, '1']
+- [aoa_shift_phase_0, '0', aoa_autocorrelate_0_0_0, '1']
+- [aoa_shift_phase_0_0, '0', aoa_autocorrelate_0, '0']
+- [aoa_shift_phase_0_0, '0', aoa_autocorrelate_0_0, '0']
+- [aoa_shift_phase_0_0, '0', aoa_autocorrelate_0_0_0, '0']
+- [aoa_shift_phase_0_0_0, '0', aoa_autocorrelate_0, '3']
+- [aoa_shift_phase_0_0_0, '0', aoa_autocorrelate_0_0, '3']
+- [aoa_shift_phase_0_0_0, '0', aoa_autocorrelate_0_0_0, '3']
+- [aoa_shift_phase_0_0_0_0, '0', aoa_autocorrelate_0, '2']
+- [aoa_shift_phase_0_0_0_0, '0', aoa_autocorrelate_0_0, '2']
+- [aoa_shift_phase_0_0_0_0, '0', aoa_autocorrelate_0_0_0, '2']
+- [blocks_add_xx_0, '0', blocks_throttle_0_0_0, '0']
+- [blocks_add_xx_0_0, '0', blocks_throttle_0_0, '0']
+- [blocks_deinterleave_0, '0', qtgui_number_sink_0, '0']
+- [blocks_deinterleave_0, '0', qtgui_time_sink_x_0, '0']
+- [blocks_deinterleave_0, '1', qtgui_number_sink_0, '1']
+- [blocks_deinterleave_0, '1', qtgui_time_sink_x_0_0, '0']
+- [blocks_deinterleave_0_0, '0', qtgui_time_sink_x_0, '1']
+- [blocks_deinterleave_0_0, '1', qtgui_time_sink_x_0_0, '1']
+- [blocks_deinterleave_0_0_0, '0', qtgui_time_sink_x_0, '2']
+- [blocks_deinterleave_0_0_0, '1', qtgui_time_sink_x_0_0, '2']
+- [blocks_multiply_const_vxx_0, '0', aoa_shift_phase_0_0, '0']
+- [blocks_multiply_matrix_xx_0, '0', blocks_multiply_const_vxx_0, '0']
+- [blocks_multiply_matrix_xx_0, '1', aoa_shift_phase_0, '0']
+- [blocks_multiply_matrix_xx_0, '2', aoa_shift_phase_0_0_0_0, '0']
+- [blocks_multiply_matrix_xx_0, '3', aoa_shift_phase_0_0_0, '0']
+- [blocks_throttle_0_0, '0', blocks_multiply_matrix_xx_0, '0']
+- [blocks_throttle_0_0_0, '0', blocks_multiply_matrix_xx_0, '1']
+- [blocks_vector_to_stream_0, '0', blocks_deinterleave_0, '0']
+- [blocks_vector_to_stream_0_0, '0', blocks_deinterleave_0_0, '0']
+- [blocks_vector_to_stream_0_0_0, '0', blocks_deinterleave_0_0_0, '0']
+
+metadata:
+  file_format: 1
