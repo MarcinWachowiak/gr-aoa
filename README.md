@@ -15,7 +15,7 @@ This is an updated and improved version of https://github.com/EttusResearch/gr-d
 **Installation procedure:**
 ```
 cd
-git clone https://github.com/MarcinWachowiak/GNU-Radio-USRP-Beamforming
+git clone https://github.com/MarcinWachowiak/GNU-Radio-USRP-AoA
 cd GNU-Radio-USRP-Beamforming/gr-aoa
 
 mkdir build
@@ -33,3 +33,4 @@ This repository also contains simulation of MUSIC algorithm and parametric analy
 <p align="center">
   <img src="img/aoa_sim_snr_sweep.png" width="600" alt="exemplary_simulation_img"/>
 </p>
+

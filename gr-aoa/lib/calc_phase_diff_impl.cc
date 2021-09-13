@@ -47,7 +47,7 @@ namespace gr {
       set_alignment(std::max(1, alignment_multiple));
 
       //calc constant position diff coeff
-      d_loc_shift_coeff = exp(gr_complex(0.0,1.0)*(float)(2*M_PI*d_norm_spacing*d_node_idx));
+      d_loc_shift_coeff = exp(gr_complex(0.0,1.0)*(float)(-2*M_PI*d_norm_spacing*d_node_idx));
     }
 
     calc_phase_diff_impl::~calc_phase_diff_impl()

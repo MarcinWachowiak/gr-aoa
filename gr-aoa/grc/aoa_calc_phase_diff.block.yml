@@ -28,7 +28,6 @@ inputs:
 
 asserts:
 - ${node_idx > 0}
--  ${norm_spacing <= 0.5}
 
 outputs:
 - label: angle
