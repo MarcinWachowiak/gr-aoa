@@ -15,7 +15,7 @@ This is an updated and improved version of https://github.com/EttusResearch/gr-d
 **Installation procedure:**
 ```
 cd
-git clone https://github.com/MarcinWachowiak/GNU-Radio-USRP-AoA
+git git@github.com:MarcinWachowiak/GNU-Radio-USRP-AoA.git
 cd GNU-Radio-USRP-Beamforming/gr-aoa
 
 mkdir build
