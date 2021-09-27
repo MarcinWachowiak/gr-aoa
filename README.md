@@ -26,7 +26,7 @@ This is an updated and improved version of https://github.com/EttusResearch/gr-d
 **Installation procedure:**
 ```
 cd
-git git@github.com:MarcinWachowiak/gr-aoa.git
+git clone git@github.com:MarcinWachowiak/gr-aoa.git
 cd gr-aoa
 
 mkdir build
