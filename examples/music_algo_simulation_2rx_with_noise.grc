@@ -187,8 +187,8 @@ blocks:
     coordinate: [24, 244.0]
     rotation: 0
     state: enabled
-- name: aoa_MUSIC_lin_array_0
-  id: aoa_MUSIC_lin_array
+- name: aoa_music_lin_array_0
+  id: aoa_music_lin_array
   parameters:
     affinity: ''
     alias: ''
@@ -244,8 +244,8 @@ blocks:
     coordinate: [768, 388.0]
     rotation: 0
     state: true
-- name: aoa_rootMUSIC_linear_array_0
-  id: aoa_rootMUSIC_linear_array
+- name: aoa_root_music_linear_array_0
+  id: aoa_root_music_linear_array
   parameters:
     affinity: ''
     alias: ''
@@ -262,8 +262,8 @@ blocks:
     coordinate: [1040, 92.0]
     rotation: 0
     state: true
-- name: aoa_rootMUSIC_linear_array_0_0
-  id: aoa_rootMUSIC_linear_array
+- name: aoa_root_music_linear_array_0_0
+  id: aoa_root_music_linear_array
   parameters:
     affinity: ''
     alias: ''
@@ -607,13 +607,13 @@ connections:
 - [analog_noise_source_x_0, '0', blocks_add_xx_0, '0']
 - [analog_noise_source_x_0_0, '0', blocks_add_xx_0_0, '1']
 - [analog_sig_source_x_0, '0', blocks_throttle_0, '0']
-- [aoa_MUSIC_lin_array_0, '0', qtgui_vector_sink_f_0, '0']
-- [aoa_autocorrelate_0, '0', aoa_MUSIC_lin_array_0, '0']
-- [aoa_autocorrelate_0, '0', aoa_rootMUSIC_linear_array_0, '0']
-- [aoa_autocorrelate_0_0, '0', aoa_rootMUSIC_linear_array_0_0, '0']
-- [aoa_rootMUSIC_linear_array_0, '0', qtgui_number_sink_0, '0']
-- [aoa_rootMUSIC_linear_array_0, '0', qtgui_time_sink_x_0, '1']
-- [aoa_rootMUSIC_linear_array_0_0, '0', qtgui_time_sink_x_0, '0']
+- [aoa_music_lin_array_0, '0', qtgui_vector_sink_f_0, '0']
+- [aoa_autocorrelate_0, '0', aoa_music_lin_array_0, '0']
+- [aoa_autocorrelate_0, '0', aoa_root_music_linear_array_0, '0']
+- [aoa_autocorrelate_0_0, '0', aoa_root_music_linear_array_0_0, '0']
+- [aoa_root_music_linear_array_0, '0', qtgui_number_sink_0, '0']
+- [aoa_root_music_linear_array_0, '0', qtgui_time_sink_x_0, '1']
+- [aoa_root_music_linear_array_0_0, '0', qtgui_time_sink_x_0, '0']
 - [aoa_shift_phase_0, '0', blocks_add_xx_0_0, '0']
 - [blocks_add_xx_0, '0', aoa_autocorrelate_0, '0']
 - [blocks_add_xx_0, '0', aoa_autocorrelate_0_0, '0']

@@ -175,8 +175,8 @@ blocks:
     coordinate: [288, 204.0]
     rotation: 180
     state: true
-- name: aoa_MUSIC_lin_array_0
-  id: aoa_MUSIC_lin_array
+- name: aoa_music_lin_array_0
+  id: aoa_music_lin_array
   parameters:
     affinity: ''
     alias: ''
@@ -247,8 +247,8 @@ blocks:
     coordinate: [712, 692.0]
     rotation: 0
     state: true
-- name: aoa_rootMUSIC_linear_array_0
-  id: aoa_rootMUSIC_linear_array
+- name: aoa_root_music_linear_array_0
+  id: aoa_root_music_linear_array
   parameters:
     affinity: ''
     alias: ''
@@ -1431,12 +1431,12 @@ blocks:
 connections:
 - [analog_const_source_x_0, '0', blocks_sample_and_hold_xx_0, '1']
 - [analog_sig_source_x_0_0, '0', blocks_selector_0_0, '0']
-- [aoa_MUSIC_lin_array_0, '0', qtgui_vector_sink_f_0, '0']
-- [aoa_autocorrelate_0, '0', aoa_MUSIC_lin_array_0, '0']
-- [aoa_autocorrelate_0, '0', aoa_rootMUSIC_linear_array_0, '0']
+- [aoa_music_lin_array_0, '0', qtgui_vector_sink_f_0, '0']
+- [aoa_autocorrelate_0, '0', aoa_music_lin_array_0, '0']
+- [aoa_autocorrelate_0, '0', aoa_root_music_linear_array_0, '0']
 - [aoa_calc_phase_diff_0, '0', aoa_precise_moving_average_0, '0']
 - [aoa_precise_moving_average_0, '0', blocks_sample_and_hold_xx_0, '0']
-- [aoa_rootMUSIC_linear_array_0, '0', qtgui_number_sink_0_0, '0']
+- [aoa_root_music_linear_array_0, '0', qtgui_number_sink_0_0, '0']
 - [aoa_shift_phase_0, '0', aoa_autocorrelate_0, '1']
 - [aoa_shift_phase_0, '0', blocks_complex_to_real_0_2, '0']
 - [band_pass_filter_0_0_0_0, '0', aoa_autocorrelate_0, '0']

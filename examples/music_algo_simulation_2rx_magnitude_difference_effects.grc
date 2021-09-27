@@ -108,8 +108,8 @@ blocks:
     coordinate: [24, 244.0]
     rotation: 0
     state: enabled
-- name: aoa_MUSIC_lin_array_0
-  id: aoa_MUSIC_lin_array
+- name: aoa_music_lin_array_0
+  id: aoa_music_lin_array
   parameters:
     affinity: ''
     alias: ''
@@ -146,8 +146,8 @@ blocks:
     coordinate: [1128, 276.0]
     rotation: 0
     state: true
-- name: aoa_rootMUSIC_linear_array_0
-  id: aoa_rootMUSIC_linear_array
+- name: aoa_root_music_linear_array_0
+  id: aoa_root_music_linear_array
   parameters:
     affinity: ''
     alias: ''
@@ -407,10 +407,10 @@ blocks:
 
 connections:
 - [analog_sig_source_x_0, '0', blocks_throttle_0_0, '0']
-- [aoa_MUSIC_lin_array_0, '0', qtgui_vector_sink_f_0, '0']
-- [aoa_autocorrelate_0, '0', aoa_MUSIC_lin_array_0, '0']
-- [aoa_autocorrelate_0, '0', aoa_rootMUSIC_linear_array_0, '0']
-- [aoa_rootMUSIC_linear_array_0, '0', qtgui_number_sink_0, '0']
+- [aoa_music_lin_array_0, '0', qtgui_vector_sink_f_0, '0']
+- [aoa_autocorrelate_0, '0', aoa_music_lin_array_0, '0']
+- [aoa_autocorrelate_0, '0', aoa_root_music_linear_array_0, '0']
+- [aoa_root_music_linear_array_0, '0', qtgui_number_sink_0, '0']
 - [blocks_complex_to_magphase_0, '0', blocks_multiply_const_vxx_0, '0']
 - [blocks_complex_to_magphase_0, '1', phase, '0']
 - [blocks_magphase_to_complex_0, '0', aoa_autocorrelate_0, '1']
