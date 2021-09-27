@@ -40,4 +40,4 @@ sudo ldconfig
 
 **Usage:**
 
-For exemplary flowcharts and use cases visit examples directory
+For exemplary flowcharts and use cases visit the examples directory.
