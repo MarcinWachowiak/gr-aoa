@@ -1,5 +1,5 @@
 id: aoa_shift_phase_multiple_hier
-label: Shift phase (M)
+label: Shift Phase (M)
 category: '[AoA]'
 documentation: |-
   Simple block used to align phases of the ULA signals, 

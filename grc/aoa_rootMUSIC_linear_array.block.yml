@@ -1,13 +1,12 @@
-id: aoa_MUSIC_lin_array
-label: MUSIC Linear Array
+id: aoa_root_music_linear_array
+label: Root-MUSIC
 category: '[AoA]'
 documentation: |-
-  This block uses MUSIC algorithm to determine the AoAs of each of the num_targets tones. The output is a pseudo-spectrum vector. 
+  This block uses Root-MUSIC algorithm to determine the AoAs of each of the num_targets tones. The output is a AoA vector of length num_targets. AoA vector contains AoAs in a sorted arrangement. 
   Args:
   norm_spacing: Normalized spacing between antennas elements. That is, distance between antenna elements divided by wavelength of the carrier signal. For example, suppose that you have an antenna array whose elements are spaced roughly, d = 6.25 cm apart (equal to half-wavelength of a 2.4 GHz carrier signal). When using such an array to receive a signal over a carrier frequency of 950 MHz, whose wavelength is lambda = 31.58 cm, set norm_spacing = d/lambda = 6.25/31.58 = 0.1979. 
-  num_targets: Num. of targets to estimate
-  inputs: Num. of elements in the antenna array
-  pspectrum_len: Pseudo-spectrum length
+  num_targets: Num. of sources to estimate
+  num_inputs: Num. of elements in the antenna array
 
 parameters:
 - id: norm_spacing
@@ -22,10 +21,6 @@ parameters:
   label: Num Antenna Elements
   dtype: int
   default: 2
-- id: pspectrum_len
-  label: PSpectrum Length
-  dtype: int
-  default: 20
 
 asserts:
 -  ${num_inputs > 0}
@@ -43,11 +38,11 @@ outputs:
 - label: out
   domain: stream
   dtype: float
-  vlen: ${pspectrum_len}
+  vlen: ${num_targets}
   optional: 0
 
 templates:
   imports: import aoa
-  make: aoa.MUSIC_lin_array(${norm_spacing}, ${num_targets}, ${num_inputs}, ${pspectrum_len})
-  
+  make: aoa.rootMUSIC_linear_array(${norm_spacing}, ${num_targets}, ${num_inputs})
+
 file_format: 1

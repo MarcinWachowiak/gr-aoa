@@ -1,5 +1,16 @@
-# GNU Radio USRP AoA
-GNU Radio package implementing MUSIC and root MUSIC angle of arrival algorithms with blocks necessary to provide phase synchronization of USRP devices.
+# GNU Radio Angle of arrival estimation with USRP
+
+GNU Radio package implementing MUSIC and root MUSIC angle of arrival algorithms with blocks necessary to provide phase synchronization of USRP devices. Implemented blocks include:
+
+1. MUSIC Linear Array
+2. Root-MUSIC
+3. Calculate Phase Difference
+4. Shift Phase
+5. Correlate
+6. Precise Moving Average
+7. Head with Reset
+
+
 This is an updated and improved version of https://github.com/EttusResearch/gr-doa.
 
 **Implemented blocks:**
@@ -15,8 +26,8 @@ This is an updated and improved version of https://github.com/EttusResearch/gr-d
 **Installation procedure:**
 ```
 cd
-git git@github.com:MarcinWachowiak/GNU-Radio-USRP-AoA.git
-cd GNU-Radio-USRP-Beamforming/gr-aoa
+git git@github.com:MarcinWachowiak/gr-aoa.git
+cd gr-aoa
 
 mkdir build
 cd build
@@ -26,11 +37,7 @@ make -j$(nproc)
 sudo make install
 sudo ldconfig
 ```
-This repository also contains simulation of MUSIC algorithm and parametric analysis implemented in Python.
 
-**Exemplary simulation results:**
+**Usage:**
 
-<p align="center">
-  <img src="img/aoa_sim_snr_sweep.png" width="600" alt="exemplary_simulation_img"/>
-</p>
-
+For exemplary flowcharts and use cases visit examples directory

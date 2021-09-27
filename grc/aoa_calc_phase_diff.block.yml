@@ -1,5 +1,5 @@
 id: aoa_calc_phase_diff
-label: Calculate phase difference
+label: Calculate Phase Difference
 category: '[AoA]'
 documentation: |-
   Calculate phase difference between two signals

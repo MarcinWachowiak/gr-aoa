@@ -1,5 +1,5 @@
 id: aoa_calc_phase_diff_multiple_hier
-label: Calculate phase diff (M)
+label: Calculate Phase Diff (M)
 category: '[AoA]'
 documentation: |-
   Simple block used to calculate phase differences of the ULA signals, 
