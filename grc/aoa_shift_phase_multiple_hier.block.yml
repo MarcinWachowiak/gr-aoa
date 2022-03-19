@@ -7,7 +7,7 @@ documentation: |-
   (hier block, multiple instances of shift phase)
 
 templates:
-  imports: import aoa
+  imports: import gnuradio.aoa as aoa
   make: aoa.shift_phase_multiple_hier(${num_signals})
 
 parameters:

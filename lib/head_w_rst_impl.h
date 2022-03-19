@@ -23,7 +23,7 @@
 #ifndef INCLUDED_BEAMFORMING_HEAD_W_RST_IMPL_H
 #define INCLUDED_BEAMFORMING_HEAD_W_RST_IMPL_H
 
-#include <aoa/head_w_rst.h>
+#include <gnuradio/aoa/head_w_rst.h>
 
 namespace gr {
   namespace aoa {

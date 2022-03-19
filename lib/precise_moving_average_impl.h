@@ -23,7 +23,7 @@
 #ifndef INCLUDED_BEAMFORMING_PRECISE_MOVING_AVERAGE_IMPL_H
 #define INCLUDED_BEAMFORMING_PRECISE_MOVING_AVERAGE_IMPL_H
 
-#include <aoa/precise_moving_average.h>
+#include <gnuradio/aoa/precise_moving_average.h>
 #include <algorithm>
 #include <vector>
 

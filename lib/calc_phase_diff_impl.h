@@ -22,7 +22,7 @@
 #ifndef INCLUDED_BEAMFORMING_CALC_PHASE_DIFF_IMPL_H
 #define INCLUDED_BEAMFORMING_CALC_PHASE_DIFF_IMPL_H
 
-#include <aoa/calc_phase_diff.h>
+#include <gnuradio/aoa/calc_phase_diff.h>
 #include <volk/volk.h>
 #include <gnuradio/math.h>
 

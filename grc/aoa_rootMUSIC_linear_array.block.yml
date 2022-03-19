@@ -42,7 +42,7 @@ outputs:
   optional: 0
 
 templates:
-  imports: import aoa
+  imports: import gnuradio.aoa as aoa
   make: aoa.rootMUSIC_linear_array(${norm_spacing}, ${num_targets}, ${num_inputs})
 
 file_format: 1

@@ -23,7 +23,7 @@
 #ifndef INCLUDED_BEAMFORMING_SHIFT_PHASE_IMPL_H
 #define INCLUDED_BEAMFORMING_SHIFT_PHASE_IMPL_H
 
-#include <aoa/shift_phase.h>
+#include <gnuradio/aoa/shift_phase.h>
 #include <volk/volk.h>
 #include <gnuradio/math.h>
 

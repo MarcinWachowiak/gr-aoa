@@ -47,7 +47,7 @@ outputs:
   optional: 0
 
 templates:
-  imports: import aoa
+  imports: import gnuradio.aoa as aoa
   make:  aoa.correlate(${num_inputs}, ${snapshot_size}, ${overlap_size}, ${avg_method})
 
 file_format: 1

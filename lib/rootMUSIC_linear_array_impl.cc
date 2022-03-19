@@ -30,7 +30,7 @@
 #include "rootMUSIC_linear_array_impl.h"
 
 namespace Eigen {
-namespace Vector {
+namespace Vector1 {
 template <class T>
 inline void push_back(Eigen::Matrix<T,Eigen::Dynamic,1>& v, const T d) {
   Eigen::Matrix<T,Eigen::Dynamic,1> tmp = v;
@@ -134,8 +134,8 @@ namespace gr {
       
         for(Eigen::Index i=0; i<dist.size(); ++i) {
           if(dist(i) > 0.0){
-              Eigen::Vector::push_back<float>(dist_inside,dist(i));
-              Eigen::Vector::push_back<gr_complex>(eigval_roots_inside,eigval_roots(i));
+              Eigen::Vector1::push_back<float>(dist_inside,dist(i));
+              Eigen::Vector1::push_back<gr_complex>(eigval_roots_inside,eigval_roots(i));
           } else {
             //do nothing - skip
           }
@@ -149,8 +149,8 @@ namespace gr {
           while((d_num_targets-dist_inside.size()) != 0) {
               //pick root closes to unity circle, even outside to prevent crashes
               dist.minCoeff(&min_dist_fill_idx);
-              Eigen::Vector::push_back<float>(dist_inside,dist(min_dist_fill_idx));
-              Eigen::Vector::push_back<gr_complex>(eigval_roots_inside,eigval_roots(min_dist_fill_idx));
+              Eigen::Vector1::push_back<float>(dist_inside,dist(min_dist_fill_idx));
+              Eigen::Vector1::push_back<gr_complex>(eigval_roots_inside,eigval_roots(min_dist_fill_idx));
           }
         }
 
