@@ -25,7 +25,7 @@
 #ifndef INCLUDED_BEAMFORMING_CORRELATE_IMPL_H
 #define INCLUDED_BEAMFORMING_CORRELATE_IMPL_H
 
-#include <aoa/correlate.h>
+#include <gnuradio/aoa/correlate.h>
 #include <eigen3/Eigen/Dense>
 
 namespace gr {

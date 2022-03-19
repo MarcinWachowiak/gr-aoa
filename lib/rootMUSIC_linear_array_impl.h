@@ -25,7 +25,7 @@
 #ifndef INCLUDED_BEAMFORMING_ROOTMUSIC_LINEAR_ARRAY_IMPL_H
 #define INCLUDED_BEAMFORMING_ROOTMUSIC_LINEAR_ARRAY_IMPL_H
 
-#include <aoa/rootMUSIC_linear_array.h>
+#include <gnuradio/aoa/rootMUSIC_linear_array.h>
 #include <algorithm>
 #include <eigen3/Eigen/Dense>
 

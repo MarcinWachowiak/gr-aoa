@@ -47,7 +47,7 @@ outputs:
   optional: 0
 
 templates:
-  imports: import aoa
+  imports: import gnuradio.aoa as aoa
   make: aoa.MUSIC_lin_array(${norm_spacing}, ${num_targets}, ${num_inputs}, ${pspectrum_len})
   
 file_format: 1

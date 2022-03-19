@@ -37,7 +37,7 @@ outputs:
   optional: 0
 
 templates:
-  imports: import aoa
+  imports: import gnuradio.aoa as aoa
   make: aoa.calc_phase_diff(${node_idx}, ${norm_spacing})
 
 file_format: 1

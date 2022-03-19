@@ -8,7 +8,7 @@ documentation: |-
 parameters:
 - id: dummy_param
   label: dummy param
-  dtype: int
+  dtype: ''
   hide: all
 
 inputs:
@@ -31,7 +31,7 @@ outputs:
   optional: 0
 
 templates:
-  imports: import aoa
+  imports: import gnuradio.aoa as aoa
   make: aoa.shift_phase()
 
 file_format: 1

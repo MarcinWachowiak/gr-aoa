@@ -1,7 +1,6 @@
 /*!
- * \defgroup block GNU Radio BEAMFORMING C++ Signal Processing Blocks
- * \brief All C++ blocks that can be used from the BEAMFORMING GNU Radio
+ * \defgroup block GNU Radio AOA C++ Signal Processing Blocks
+ * \brief All C++ blocks that can be used from the AOA GNU Radio
  *        module are listed here or in the subcategories below.
  *
  */
-

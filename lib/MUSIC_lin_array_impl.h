@@ -25,7 +25,7 @@
 #ifndef INCLUDED_BEAMFORMING_MUSIC_LIN_ARRAY_IMPL_H
 #define INCLUDED_BEAMFORMING_MUSIC_LIN_ARRAY_IMPL_H
 
-#include <aoa/MUSIC_lin_array.h>
+#include <gnuradio/aoa/MUSIC_lin_array.h>
 #include <eigen3/Eigen/Dense>
 
 namespace gr {

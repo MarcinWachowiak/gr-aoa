@@ -1,23 +1,17 @@
-title: gr-aoa
-brief: Angle of arrival estimation with USRP B210
-tags:
+title: The AOA OOT Module
+brief: Short description of gr-aoa
+tags: # Tags are arbitrary, but look at CGRAN what other authors are using
   - sdr
-  - doa
-  - aoa
-  - MUSIC
-  - array
 author:
-  - Srikanth Pagadarai <srikanth.pagadarai@gmail.com>
-  - Travis Collins <travisfcollins@gmail.com>
-  - Alexander Wyglinski <alexw@wpi.edu>
-  - Marcin Wachowiak <marcin.r.wachowiak@gmail.com>
+  - Author Name <authors@email.address>
 copyright_owner:
-  - Marcin Wachowiak
+  - Copyright Owner 1
 license:
-gr_supported_version: 3.8.2.0
-repo: https://github.com/MarcinWachowiak/GNU-Radio-USRP-AoA
-website: 
-icon: 
-
+gr_supported_version: # Put a comma separated list of supported GR versions here
+#repo: # Put the URL of the repository here, or leave blank for default
+#website: <module_website> # If you have a separate project website, put it here
+#icon: <icon_url> # Put a URL to a square image here that will be used as an icon on CGRAN
 ---
-GNU Radio package implementing MUSIC and root MUSIC angle of arrival algorithms with blocks necessary to provide phase synchronization of USRP devices. Updated and improved version of https://github.com/EttusResearch/gr-doa.
+A longer, multi-line description of gr-aoa.
+You may use some *basic* Markdown here.
+If left empty, it will try to find a README file instead.

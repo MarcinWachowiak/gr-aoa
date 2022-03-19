@@ -5,7 +5,7 @@ documentation: |-
   Precise version of Moving Average that uses accumulator and scale od double type to enable greater lengths of buffer and greater required number of maximum iterations enabling more precise results
   (Tested with window size of 100MS)
 templates:
-  imports: import aoa
+  imports: import gnuradio.aoa as aoa
   make: aoa.precise_moving_average(${length}, ${max_iter})
 
 parameters:
